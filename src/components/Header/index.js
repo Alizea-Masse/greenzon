@@ -5,7 +5,11 @@ import { BsSearchHeart } from "react-icons/bs";
 import { AiOutlineMenu } from "react-icons/ai";
 import { FiShoppingCart } from "react-icons/fi";
 
+import { signIn, signOut, useSession } from "next-auth/react";
+
 const Header = () => {
+  const { data: session } = useSession();
+  console.log(session);
   return (
     <header>
       {/* top nav */}
@@ -29,8 +33,10 @@ const Header = () => {
         </div>
         {/* Right */}
         <div className="text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap">
-          <div className="link">
-            <p>Salut Alizéa Massé !</p>
+          <div className="link" onClick={!session ? signIn : signOut}>
+            <p>
+              {session ? `Bonjour, ${session.user.name}` : "Se connecter"}
+            </p>
             <p className="font-extrabold md:text-sm">Compte et listes </p>
           </div>
           <div className="link">
