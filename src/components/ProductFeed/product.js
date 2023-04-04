@@ -3,9 +3,12 @@ import { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import Image from "next/image";
 import Currency from "react-currency-formatter";
+import { useDispatch } from "react-redux";
+import { addToBasket } from "../../slices/basketSlice";
 
 
 const Product = ({ id, title, price, description, category, image }) => {
+    const dispatch= useDispatch();
   const [rating, setRating] = useState(1);
   const [hasPrime, setHasPrime] = useState(true);
   const MAX_RATING = 5;
@@ -17,6 +20,22 @@ const Product = ({ id, title, price, description, category, image }) => {
 
     setHasPrime(Math.random() < 0.5);
   }, []);
+
+  const addItemToBasket = () => {
+    const product = {
+      id,
+      title,
+      price,
+      description,
+      category,
+      image,
+      hasPrime,
+      rating
+
+    };
+// envoyer le produit en tant qu'action au redux store 
+    dispatch(addToBasket(product));
+  };
 
   return (
     <div className="relative flex flex-col m-5 bg-white z-30 p-10 rounded-md ">
@@ -40,7 +59,7 @@ const Product = ({ id, title, price, description, category, image }) => {
                 <p className="text-xs text-gray-500">Livraison gratuite</p>
             </div>
         )}
-        <button className="mt-auto button">Ajouter au panier</button>
+        <button onClick={addItemToBasket} className="mt-auto button">Ajouter au panier</button>
     </div>
   );
 };

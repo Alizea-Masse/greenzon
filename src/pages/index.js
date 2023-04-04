@@ -5,7 +5,7 @@ import ProductFeed from "../components/ProductFeed";
 
 export default function Home({products}) {
   return (
-    <div className="bg-green-100">
+    <div className="bg-greenzon_green">
       <Head>
         <title>Greenzon</title>
       </Head>

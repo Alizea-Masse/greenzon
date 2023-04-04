@@ -6,16 +6,20 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { FiShoppingCart } from "react-icons/fi";
 
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { useSelector } from "react-redux";
+import { selectItems } from "../../slices/basketSlice";
 
 const Header = () => {
   const { data: session } = useSession();
-  console.log(session);
+  const router = useRouter();
+  const items = useSelector(selectItems)
   return (
     <header>
       {/* top nav */}
       <div className="flex items-center bg-greenzon_green  flex-grow ">
         <div className="mt-1 flex items-center flex-grow sm:flex-grow-0">
-          <Image
+          <Image onClick={() => router.push("/")}
             src="/greenzonnobg.png"
             width={150}
             height={60}
@@ -43,9 +47,9 @@ const Header = () => {
             <p>Retours</p>
             <p className="font-extrabold md:text-sm">& Commandes</p>
           </div>
-          <div className="link relative flex items-center">
+          <div className="link relative flex items-center" onClick={()=>router.push('/checkout')}>
             <span className="absolute top-2 left-9 md:right-10 h-4 w-4 bg-yellow-400 rounded-full text-center text-black font-bold">
-              0
+              {items.length}
             </span>
             <FiShoppingCart size={32} className="" />
             <p className=" hidden md:inline font-extrabold pl-1 md:text-sm mt-2">
