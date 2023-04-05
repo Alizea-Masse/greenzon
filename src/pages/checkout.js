@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import { selectItems } from "../slices/basketSlice";
+import { selectTotal } from "../slices/basketSlice";
 import CheckoutProduct from "../components/CheckoutProduct";
 import Currency from "react-currency-formatter";
 import { useSession } from "next-auth/react";
@@ -9,6 +10,7 @@ import { useSession } from "next-auth/react";
 const Checkout = () => {
   const session = useSession();
   const items = useSelector(selectItems);
+  const total = useSelector(selectTotal)
   return (
     <div className="bg-greenzon_green">
       <Header />
@@ -44,16 +46,17 @@ const Checkout = () => {
         </div>
 
         {/* right */}
-        <div>
+        <div className="flex flex-col bg-white p-10 shadow-md">
           {items.length > 0 && (
             <>
               <h2 className="whitespace-nowrap">
-                Sous-total {items.length} items :
+                Sous-total ({items.length}{items.length > 1 ? " produits" : " produit"}): {" "}  
                 <span className="font-bold">
-                  {/* <Currency quantity={items.reduce((total,item)=>total + item.price,0)} currency="EUR"/> */}
+                  <Currency quantity={total} currency="EUR"/>
                 </span>
               </h2>
               <button
+              disabled={session.status === "unauthenticated"}
                 className={`button mt-2 ${
                   session.status === "unauthenticated" &&
                   "from-gray-300 to-gray-500 border-gray-200 text-gray-200 cursor-not-allowed"
@@ -63,7 +66,7 @@ const Checkout = () => {
                   ? "Inscrivez-vous pour commander"
                   : "Proceder au paiement"}
               </button>
-              {console.log(session)}
+              
             </>
           )}
         </div>
