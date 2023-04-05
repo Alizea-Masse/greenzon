@@ -66,7 +66,7 @@ const Header = () => {
         </p>
         <p className="link">Meilleures ventes</p>
         <p className="link">Service Client</p>
-        <p className="link">Dernières Nouveautés</p>
+        <p className="cursor-pointer hover:underline py-3">Dernières Nouveautés</p>
         <p className="link hidden lg:inline-flex">Basics</p>
         <p className="link hidden lg:inline-flex">Musique</p>
         <p className="link hidden lg:inline-flex">Ventes</p>
