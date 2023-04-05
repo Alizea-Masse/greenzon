@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start" 
+    "start": "next start"
   },
   "dependencies": {
     "@heroicons/react": "v1",
@@ -12,6 +12,7 @@
     "@tailwindcss/line-clamp": "^0.2.0",
     "firebase": "^9.19.1",
     "firebase-admin": "^9.8.0",
+    "firebase-tools": "^11.25.2",
     "next": "latest",
     "next-auth": "^4.21.1",
     "react": "17.0.1",
@@ -30,5 +31,4 @@
   "engines": {
     "node": "16.x"
   }
-  
 }
