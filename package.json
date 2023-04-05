@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start --openssl-legacy-provider start" 
+    "start": "next start" 
   },
   "dependencies": {
     "@heroicons/react": "v1",
@@ -26,5 +26,9 @@
     "autoprefixer": "^10.2.5",
     "postcss": "^8.2.15",
     "tailwindcss": "^2.1.2"
+  },
+  "engines": {
+    "node": "16.x"
   }
+  
 }
