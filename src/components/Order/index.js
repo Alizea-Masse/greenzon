@@ -17,7 +17,17 @@ function Order({ id, amount, amountShipping, images, timestamp, items }) {
             <Currency quantity={amount} currency="EUR" /> 
           </p>
         </div>
-        <p className="text-sm whitespace-nowrap sm:">{items.length} produit</p>
+        <p className="text-sm whitespace-nowrap sm:text-xl self-end flex-1 text-right text-blue-500">{items.length}{items.length > 1 ? " produits" : " produit"} {" "} :</p>
+        <p className="absolute top-2 right-2 w-40 lg:w-72 truncate text-xs whitespace-nowrap">COMMANDE #{id}</p>
+      </div>
+      <div className="p-5 sm:p-10">
+        <div className="flex space-x-6 overflow-x-auto">
+            {images.map((image, i) => (
+                <img src={image} alt="" className="h-20 object-contain sm:h-32" />
+
+            ))}
+
+        </div>
       </div>
     </div>
   );

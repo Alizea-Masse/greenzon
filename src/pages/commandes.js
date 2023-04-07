@@ -13,7 +13,7 @@ import Order from "../components/Order";
 
 function Commandes({ orders }) {
   const session = useSession();
-  console.log(orders)
+  //console.log(orders)
   return (
     <div>
       <Header />
@@ -22,7 +22,7 @@ function Commandes({ orders }) {
           Vos commandes
         </h1>
         {session.status === 'authenticated' ? (
-          <h2> {orders.length} commandes  </h2>
+          <h2> ({orders.length}{orders.length > 1 ? " commandes" : " commande"}): {" "} </h2>
         ) : (
           <h2>Veuillez vous connecter pour voir vos commandes</h2>
         )}
