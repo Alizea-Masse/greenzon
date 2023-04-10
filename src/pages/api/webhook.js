@@ -17,7 +17,6 @@ const serviceAccount = require("../../../permission.json");
 
 // connection to stripe
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-
 const endpointSecret = process.env.STRIPE_SIGNING_SECRET;
 
 const fulfillOrder = async (session) => {
@@ -40,6 +39,7 @@ const fulfillOrder = async (session) => {
       );
     });
 };
+
 
 export default async (req, res) => {
   if (req.method === "POST") {

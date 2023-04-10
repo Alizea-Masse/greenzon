@@ -1,6 +1,7 @@
 {
   "name": "with-redux-toolkit",
   "version": "1.0.0",
+  "type": "commonjs",
   "scripts": {
     "dev": "next",
     "build": "next build",
