@@ -44,15 +44,15 @@ const fulfillOrder = async (session) => {
 export default async (req, res) => {
   if (req.method === "POST") {
     // Process a POST request
-    const requestBuffer = await buffer(req);
-    const payload = requestBuffer.toString();
+    const buf = await buffer(req);
     const sig = req.headers["stripe-signature"];
 
     let event;
 
     // Verify that the event came from Stripe
     try {
-      event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
+      
+      event = stripe.webhooks.constructEvent(buf, sig, endpointSecret);
       
      
     } catch (err) {
