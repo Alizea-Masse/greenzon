@@ -17,7 +17,7 @@ const serviceAccount = require("../../../permission.json");
 
 // connection to stripe
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const endpointSecret = process.env.STRIPE_SIGNING_SECRET;
+const endpointSecret = process.env.stripe_signing_secret;
 
 const fulfillOrder = async (session) => {
   //console.log("Fulfilling order", session);
@@ -47,7 +47,7 @@ export default async (req, res) => {
     const requestBuffer = await buffer(req);
     const payload = requestBuffer.toString();
     const sig = req.headers["stripe-signature"];
-console.log(payload);
+//console.log(payload);
     let event;
 
     // Verify that the event came from Stripe
@@ -68,6 +68,7 @@ console.log(payload);
       // Fulfill the purchase...
       //console.log(session);
       //console.log("Payment successful!");
+    
       return fulfillOrder(session)
         .then(() => res.status(200))
         .catch((err) => res.status(400).send(`Webhook error: ${err.message}`));

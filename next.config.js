@@ -14,6 +14,7 @@ module.exports = {
       },
       env:{
         stripe_public_key: process.env.STRIPE_PUBLIC_KEY,
+        stripe_signing_secret: process.env.STRIPE_SIGNING_SECRET
       }
     }
     
