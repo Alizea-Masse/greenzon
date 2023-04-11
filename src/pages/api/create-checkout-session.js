@@ -23,8 +23,8 @@ export default async (req, res) => {
         },
         line_items: transformedItems,
         mode: 'payment',
-        success_url: `https://greenzon-iv1iw018a-alizea-masse.vercel.app/success`,
-        cancel_url: `https://greenzon-iv1iw018a-alizea-masse.vercel.app/cancel`,
+        success_url: `${process.env.HOST}/success`,
+        cancel_url: `${process.env.HOST}/cancel`,
         metadata: {
             email,
             images: JSON.stringify(items.map((item) => item.image)),
